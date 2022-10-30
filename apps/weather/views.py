@@ -19,7 +19,6 @@ class Home(TemplateView):
 
     @method_decorator(cache_page(settings.CUSTOM_CACHE_SECONDS))
     def get(self, request, *args, **kwargs):
-        print("skfdjksdfhjkdsfh")
         query_params = self.request.GET
 
         city = query_params.get("city", "Berlin")

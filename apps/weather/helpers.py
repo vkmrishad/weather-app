@@ -1,3 +1,5 @@
+import asyncio
+import aiohttp
 import requests
 from requests import RequestException
 
@@ -34,23 +36,23 @@ def degree_to_direction_converter(degree):
     return dirs[calculate % 16]
 
 
-def fetch_weather_data(city):
+async def fetch_weather_data(city):
     """
     Fetch waether data from OpenWeatherMap API
     :param city:
     :return:
     """
-    API_KEY = "f0434074326407628f0a9af4fedb32d9"
+    API = "https://api.openweathermap.org/data/2.5/weather"
 
     try:
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&lang=en&appid={OPEN_WEATHER_MAP_API_KEY}"
-        weather = requests.get(url.format(city)).json()
+        url = f"{API}?q={city}&units=metric&lang=en&appid={OPEN_WEATHER_MAP_API_KEY}"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                return await response.json()
     except ConnectionError as err:
         raise ConnectionError(err)
     except requests.exceptions.RequestException as err:
         raise RequestException(err)
-
-    return weather
 
 
 def weather_data(city):
@@ -59,7 +61,7 @@ def weather_data(city):
     :param city:
     :return:
     """
-    weather = fetch_weather_data(city)
+    weather = asyncio.run(fetch_weather_data(city))
     data = None
 
     # Map values if status is 200
