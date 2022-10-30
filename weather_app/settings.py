@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third Party Apps
-
     # Custom Apps
     "apps.weather",
 ]
@@ -51,9 +50,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    'django.middleware.cache.UpdateCacheMiddleware',
+    "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.common.CommonMiddleware",
-    'django.middleware.cache.FetchFromCacheMiddleware',
+    "django.middleware.cache.FetchFromCacheMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -65,7 +64,7 @@ ROOT_URLCONF = "weather_app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'templates')],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -126,11 +125,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = os.environ.get('STATIC_URL', '/static/')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = os.environ.get("STATIC_URL", "/static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-MEDIA_URL = os.environ.get('MEDIA_URL', '/media/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = os.environ.get("MEDIA_URL", "/media/")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # Default primary key field type
@@ -143,13 +142,14 @@ OPEN_WEATHER_MAP_API_KEY = env("OPEN_WEATHER_MAP_API_KEY")
 
 # Cache
 CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "unique-snowflake",
     }
 }
-CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 600    # (60 * 10) = 600, 10 minutes
-CACHE_MIDDLEWARE_KEY_PREFIX = ''
-CUSTOM_CACHE_SECONDS = int(env("CUSTOM_CACHE_SECONDS", 300))    # (60 * 5) = 300, 5 minutes
-
+CACHE_MIDDLEWARE_ALIAS = "default"
+CACHE_MIDDLEWARE_SECONDS = 600  # (60 * 10) = 600, 10 minutes
+CACHE_MIDDLEWARE_KEY_PREFIX = ""
+CUSTOM_CACHE_SECONDS = int(
+    env("CUSTOM_CACHE_SECONDS", 300)
+)  # (60 * 5) = 300, 5 minutes

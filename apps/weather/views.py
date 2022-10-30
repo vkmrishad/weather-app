@@ -13,8 +13,9 @@ class Home(TemplateView):
     """
     View for App Store AppHome
     """
-    template_name = 'index.html'
-    context_object_name = 'data'
+
+    template_name = "index.html"
+    context_object_name = "data"
 
     @method_decorator(cache_page(settings.CUSTOM_CACHE_SECONDS))
     def get(self, request, *args, **kwargs):
@@ -25,7 +26,7 @@ class Home(TemplateView):
 
         data = None
         if city:
-            city = re.sub('\s+', ' ', city).strip()
+            city = re.sub("\s+", " ", city).strip()
 
             # Fetch weather data from openweathermap API
             data = weather_data(city)

@@ -12,8 +12,24 @@ def degree_to_direction_converter(degree):
     :param degree:
     :return: cardinal direction
     """
-    dirs = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
-            "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+    dirs = [
+        "N",
+        "NNE",
+        "NE",
+        "ENE",
+        "E",
+        "ESE",
+        "SE",
+        "SSE",
+        "S",
+        "SSW",
+        "SW",
+        "WSW",
+        "W",
+        "WNW",
+        "NW",
+        "NNW",
+    ]
     calculate = int((degree + 11.25) / 22.5)
     return dirs[calculate % 16]
 
@@ -54,17 +70,19 @@ def weather_data(city):
             "temperature": {
                 "temp": round(weather["main"]["temp"]),
                 "min": round(weather["main"]["temp_min"]),
-                "max": round(weather["main"]["temp_max"])
+                "max": round(weather["main"]["temp_max"]),
             },
             "humidity": weather["main"]["humidity"],
             "pressure": weather["main"]["pressure"],
             "wind": {
                 "speed": weather["wind"]["speed"],
-                "direction": degree_to_direction_converter(weather["wind"]["deg"]),
+                "direction": degree_to_direction_converter(
+                    weather["wind"]["deg"]
+                ),
             },
             "main": weather["weather"][0]["main"],
             "description": weather["weather"][0]["description"].capitalize(),
-            "icon": weather["weather"][0]["icon"]
+            "icon": weather["weather"][0]["icon"],
         }
 
     return data
