@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: app
+    stdin_open: true
+    expose:
+      - '8000'
+    volumes:
+      - .:/app
+    command: bash -c "gunicorn -w 3 -k uvicorn.workers.UvicornWorker weather_app.asgi:application --bind=0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    networks:
+      - live
+
+  nginx:
+    image: nginx
+    hostname: nginx
+    ports:
+      - '82:8000'
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - live
+
+networks:
+  live:
