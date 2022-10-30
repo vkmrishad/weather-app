@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% load i18n %}
+
+{% block title %}| 500{% endblock title %}
+
+{% block content %}
+<div class="clearfix">&nbsp;</div>
+<div class='c'>
+    <div class='_ERROR'>500</div>
+    <hr>
+    <div class='_1'>INTERNAL SERVER ERROR</div>
+    <a class='btn btn-primary' href="{% url 'weather:home' %}">BACK TO HOME</a>
+</div>
+{% endblock content %}
