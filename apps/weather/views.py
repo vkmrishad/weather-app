@@ -1,9 +1,12 @@
 import re
-import requests
+
+from django.conf import settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 from django.views.generic import TemplateView
 
-from apps.weather.helpers import degree_to_direction_converter, weather_data
+from apps.weather.helpers import weather_data
 
 
 class Home(TemplateView):
@@ -13,10 +16,12 @@ class Home(TemplateView):
     template_name = 'index.html'
     context_object_name = 'data'
 
+    @method_decorator(cache_page(settings.CUSTOM_CACHE_SECONDS))
     def get(self, request, *args, **kwargs):
+        print("skfdjksdfhjkdsfh")
         query_params = self.request.GET
 
-        city = query_params.get("city")
+        city = query_params.get("city", "Berlin")
 
         data = None
         if city:

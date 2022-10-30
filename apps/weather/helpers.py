@@ -3,8 +3,7 @@ from requests import RequestException
 
 from django.conf import settings
 
-# OPEN_WEATHER_MAP_API_KEY = settings.OPEN_WEATHER_MAP_API_KEY
-API_KEY = "f0434074326407628f0a9af4fedb32d9"
+OPEN_WEATHER_MAP_API_KEY = settings.OPEN_WEATHER_MAP_API_KEY
 
 
 def degree_to_direction_converter(degree):
@@ -20,12 +19,16 @@ def degree_to_direction_converter(degree):
 
 
 def fetch_weather_data(city):
+    """
+    Fetch waether data from OpenWeatherMap API
+    :param city:
+    :return:
+    """
     API_KEY = "f0434074326407628f0a9af4fedb32d9"
 
     try:
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&lang=en&appid={API_KEY}"
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&lang=en&appid={OPEN_WEATHER_MAP_API_KEY}"
         weather = requests.get(url.format(city)).json()
-        print(weather)
     except ConnectionError as err:
         raise ConnectionError(err)
     except requests.exceptions.RequestException as err:
@@ -35,6 +38,11 @@ def fetch_weather_data(city):
 
 
 def weather_data(city):
+    """
+    Mapping OpenWeatherMap API to defined structure
+    :param city:
+    :return:
+    """
     weather = fetch_weather_data(city)
     data = None
 

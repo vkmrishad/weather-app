@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+
+def env(name, default=None):
+    return os.environ.get(name, default)
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,13 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-$7^k=m$+kn4w))ql5_fa(h0+-#nu+smbn763iutt7=xferf#pk"
+SECRET_KEY = env("SECRET_KEY", "your-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+DEBUG = env("DEBUG", "0") == "1"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = str(env("ALLOWED_HOSTS")).split(",")
 
 
 # Application definition
@@ -47,7 +51,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.cache.UpdateCacheMiddleware',
     "django.middleware.common.CommonMiddleware",
+    'django.middleware.cache.FetchFromCacheMiddleware',
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -131,3 +137,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# OpenWeatherMap (https://openweathermap.org/)
+OPEN_WEATHER_MAP_API_KEY = env("OPEN_WEATHER_MAP_API_KEY")
+
+# Cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 600    # (60 * 10) = 600, 10 minutes
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
+CUSTOM_CACHE_SECONDS = int(env("CUSTOM_CACHE_SECONDS", 300))    # (60 * 5) = 300, 5 minutes
+
