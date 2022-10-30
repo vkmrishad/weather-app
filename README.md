@@ -1,15 +1,15 @@
 # weather-app
 Simple weather web app using Python/Django
 
-![example workflow](https://github.com/vkmrishad/weather_app/actions/workflows/black.yaml/badge.svg?branch=main)
-![example workflow](https://github.com/vkmrishad/weather_app/actions/workflows/django-ci.yaml/badge.svg?branch=main)
+![example workflow](https://github.com/vkmrishad/weather-app/actions/workflows/black.yaml/badge.svg?branch=main)
+![example workflow](https://github.com/vkmrishad/weather-app/actions/workflows/django-ci.yaml/badge.svg?branch=main)
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
 ## Clone
 
-    git clone https://github.com/vkmrishad/weather_app.git
+    git clone https://github.com/vkmrishad/weather-app.git
     or
-    git git@github.com:vkmrishad/weather_app.git
+    git git@github.com:vkmrishad/weather-app.git
 
 ## System dependencies
 
