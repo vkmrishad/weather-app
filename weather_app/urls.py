@@ -20,5 +20,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
     path("", include("apps.weather.urls", namespace="weather")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

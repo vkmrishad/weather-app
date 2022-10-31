@@ -1,0 +1,80 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-31 04:11+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/weather/templates/index.html:4
+msgid "Weather"
+msgstr "Wetter"
+
+#: apps/weather/templates/index.html:15
+msgid "Search city"
+msgstr "Stadt suchen"
+
+#: apps/weather/templates/index.html:15 apps/weather/templates/index.html:17
+msgid "Search"
+msgstr "Suche"
+
+#: apps/weather/templates/index.html:35
+msgid "City"
+msgstr "Stadt"
+
+#: apps/weather/templates/index.html:39
+msgid "Temperature"
+msgstr "Temperatur"
+
+#: apps/weather/templates/index.html:41
+msgid "Low"
+msgstr "Niedrig"
+
+#: apps/weather/templates/index.html:41
+msgid "High"
+msgstr "Hoch"
+
+#: apps/weather/templates/index.html:45
+msgid "Wind"
+msgstr "Wind"
+
+#: apps/weather/templates/index.html:52
+msgid "Humidity"
+msgstr "Feuchtigkeit"
+
+#: apps/weather/templates/index.html:57
+msgid "Pressure"
+msgstr "Druck"
+
+#: apps/weather/templates/index.html:110
+msgid "No data"
+msgstr "Keine Daten für Stadtsuche gefunden"
+
+#: templates/base.html:134
+msgid "Change"
+msgstr "Ändern"
+
+#: templates/base.html:164
+msgid "Back to top"
+msgstr "Zurück nach oben"
+
+#: templates/base.html:166
+msgid "Copyright"
+msgstr "Urheberrechte"
+
+#: weather_app/settings.py:154
+msgid "English"
+msgstr "Englisch"
+
+#: weather_app/settings.py:155
+msgid "German"
+msgstr "Deutsch"
+
+#: weather_app/settings.py:156
+msgid "Spanish"
+msgstr "Español"
+
+#: weather_app/settings.py:157
+msgid "French"
+msgstr "Französisch"

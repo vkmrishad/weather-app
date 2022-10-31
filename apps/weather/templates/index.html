@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {% load i18n %}
 
-{% block title %}| {{ data.city }}, {{ data.country }} | Weather{% endblock title %}
+{% block title %}| {{ data.city }}, {{ data.country }} | {% translate "Weather" %}{% endblock title %}
 
 {% block content %}
 <main class="container">
@@ -9,12 +9,12 @@
     <div class="container">
         <div class="col-md-6 offset-md-3 text-center">
             <div class="d-flex align-items-center">
-                <form class="w-100" action="" method="GET">
+                <form class="w-100" action="{% url 'weather:home' %}" method="get">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="city" value="{{request.GET.city.strip}}"
-                               placeholder="Search city" aria-label="Search"
+                               placeholder="{% translate 'Search city' %}" aria-label="{% translate 'Search' %}"
                                autocomplete="off">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary">{% translate 'Search' %}</button>
                     </div>
                 </form>
             </div>
@@ -32,27 +32,29 @@
 
                 </div>
                 <div class="col p-4 d-flex flex-column position-static" style="text-align: left; font-size: 14px;">
-                    <h6>City</h6>
+                    <h6>{% translate "City" %}</h6>
                     <p>{{ data.city }}, {{ data.country }}</p>
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <h6>Temperature</h6>
-                            <p><b>Low:</b> {{ data.temperature.min }}°C, <b>High:</b> {{ data.temperature.max }}°C</p>
+                            <h6>{% translate "Temperature" %}</h6>
+                            <p>
+                                <b>{% translate "Low" %}:</b> {{ data.temperature.min }}°C, <b>{% translate "High" %}:</b> {{ data.temperature.max }}°C
+                            </p>
                         </div>
                         <div class="col-md-6">
-                            <h6>Wind</h6>
+                            <h6>{% translate "Wind" %}</h6>
                             <p>{{ data.wind.speed }} m/s {{ data.wind.direction }}</p>
                         </div>
                     </div>
 
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <h6>Humidity</h6>
+                            <h6>{% translate "Humidity" %}</h6>
                             <p>{{ data.humidity }}%</p>
                         </div>
 
                         <div class="col-md-6">
-                            <h6>Pressure</h6>
+                            <h6>{% translate "Pressure" %}</h6>
                             <p>{{ data.pressure }} hPa</p>
                         </div>
                     </div>
@@ -105,7 +107,7 @@
                             cx="54" cy="624.5" r="22" fill="#adadad"></circle></svg>
                 </span>
                 <div class="clearfix">&nbsp;</div>
-                <p>No data found for city search "{{request.GET.city.strip}}"</p>
+                <p>{% translate "No data" %} "{{request.GET.city.strip}}"</p>
             </div>
             {% endif %}
         </div>

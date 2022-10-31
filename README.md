@@ -47,6 +47,12 @@ For environment variables follow [sample.env](/sample.env)
     or
     $ ./manage.py collectstatic
 
+## Compile translation messages
+
+    $ python manage.py compilemessages
+    or
+    $ ./manage.py compilemessages
+
 ## Runserver
 
     $ python manage.py runserver 0.0.0.0:8000

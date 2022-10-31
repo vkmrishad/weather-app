@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
+
 
 def env(name, default=None):
     return os.environ.get(name, default)
@@ -19,7 +21,6 @@ def env(name, default=None):
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -32,7 +33,6 @@ DEBUG = env("DEBUG", "0") == "1"
 
 ALLOWED_HOSTS = str(env("ALLOWED_HOSTS")).split(",")
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Third Party Apps
     # Custom Apps
     "apps.weather",
 ]
@@ -51,6 +50,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.cache.UpdateCacheMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.cache.FetchFromCacheMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -79,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "weather_app.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -89,7 +88,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -109,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -121,7 +118,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -130,7 +126,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = os.environ.get("MEDIA_URL", "/media/")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -153,3 +148,12 @@ CACHE_MIDDLEWARE_KEY_PREFIX = ""
 CUSTOM_CACHE_SECONDS = int(
     env("CUSTOM_CACHE_SECONDS", 300)
 )  # (60 * 5) = 300, 5 minutes
+
+# Translation
+LANGUAGES = [
+    ("en", _("English")),
+    ("de", _("German")),
+    ("es", _("Spanish")),
+    ("fr", _("French")),
+]
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)

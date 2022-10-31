@@ -3,6 +3,7 @@ import aiohttp
 import requests
 from requests import RequestException
 
+from django.utils.translation import get_language
 from django.conf import settings
 
 OPEN_WEATHER_MAP_API_KEY = settings.OPEN_WEATHER_MAP_API_KEY
@@ -36,7 +37,7 @@ def degree_to_direction_converter(degree):
     return dirs[calculate % 16]
 
 
-async def fetch_weather_data(city):
+async def fetch_weather_data(city, lang):
     """
     Fetch waether data from OpenWeatherMap API
     :param city:
@@ -45,7 +46,7 @@ async def fetch_weather_data(city):
     API = "https://api.openweathermap.org/data/2.5/weather"
 
     try:
-        url = f"{API}?q={city}&units=metric&lang=en&appid={OPEN_WEATHER_MAP_API_KEY}"
+        url = f"{API}?q={city}&units=metric&lang={lang}&appid={OPEN_WEATHER_MAP_API_KEY}"
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as response:
                 return await response.json()
@@ -61,7 +62,10 @@ def weather_data(city):
     :param city:
     :return:
     """
-    weather = asyncio.run(fetch_weather_data(city))
+    # Current selected language
+    lang = get_language()
+
+    weather = asyncio.run(fetch_weather_data(city, lang))
     data = None
 
     # Map values if status is 200

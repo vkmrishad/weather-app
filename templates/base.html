@@ -115,6 +115,25 @@
                 </svg>
                 <strong>Weather App</strong></a>
             </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}"/>
+                <select class="form-select" name="language">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                    <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
+                        {% translate language.name %} ({{ language.code }})
+                    </option>
+                    {% endfor %}
+                </select>
+                    <button type="submit" class="btn btn-secondary">{% translate 'Change' %}</button>
+                </div>
+            </form>
         </div>
     </div>
 </header>
@@ -142,9 +161,9 @@
 <footer class="text-muted py-5 bg-dark">
     <div class="container">
         <p class="float-end">
-            <a class="text-white" href="#">Back to top</a>
+            <a class="text-white" href="#">{% translate "Back to top" %}</a>
         </p>
-        <p class="text-white">Copyright &copy; Weather App - 2022</p>
+        <p class="text-white">{% translate "Copyright" %} &copy; Weather App - 2022</p>
     </div>
 </footer>
 <!-- End Footer -->
