@@ -79,3 +79,18 @@ Create superuser to test admin feature
 
 #### Access server: http://127.0.0.1:8000
 #### Access Admin: http://127.0.0.1:8000/admin/
+
+
+
+# Screenshots
+
+English, Berlin (Default) ![English, Berlin](screenshots/1.png)
+
+English, London ![English, London](screenshots/2.png)
+
+German, Berlin ![Screenshot](screenshots/3.png)
+
+French, Paris ![Screenshot](screenshots/4.png)
+
+Spanish, Barcelona ![Screenshot](screenshots/5.png)
+
