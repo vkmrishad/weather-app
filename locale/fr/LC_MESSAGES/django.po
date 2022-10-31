@@ -17,11 +17,11 @@ msgstr "Rechercher la ville"
 
 #: apps/weather/templates/index.html:15 apps/weather/templates/index.html:17
 msgid "Search"
-msgstr "Ville"
+msgstr "Rechercher"
 
 #: apps/weather/templates/index.html:35
 msgid "City"
-msgstr ""
+msgstr "Ville"
 
 #: apps/weather/templates/index.html:39
 msgid "Temperature"
