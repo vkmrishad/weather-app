@@ -23,6 +23,7 @@ jobs:
           pip install -r requirements.txt
       - name: Compile translation message
         run: |
+          sudo apt-get install gettext
           python manage.py compilemessages
       - name: Run Tests
         env:
