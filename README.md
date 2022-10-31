@@ -14,7 +14,8 @@ Simple weather web app using Python/Django
 ## System dependencies
 
 * [Python: 3.9+](https://www.python.org/downloads/)
-* [sqlite](https://www.sqlite.org/index.html)
+* [OpenWeatherMap API](https://openweathermap.org/current/)
+* [sqlite](https://www.sqlite.org/index.html) - optional
 * [pre-commit](https://pre-commit.com/) - optional
 
 ## Environment and Package Management
@@ -93,4 +94,3 @@ German, Berlin ![Screenshot](screenshots/3.png)
 French, Paris ![Screenshot](screenshots/4.png)
 
 Spanish, Barcelona ![Screenshot](screenshots/5.png)
-
